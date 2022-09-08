@@ -1,15 +1,41 @@
 import express, { Request, Response } from 'express';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import session from 'express-session';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'http://127.0.0.1:5173',
+    origin: 'http://localhost:3000',
   })
 );
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const prisma = new PrismaClient();
+
+app.get('/set-cookie', (req, res) => {
+  // res.setHeader('set-cookie', 'foo=bar');
+  res.cookie('foo', 'bar', {
+    // masAge: 5000,
+    // expires: new Date('26 July 2021'),
+    httpOnly: true,
+    secure: true,
+  });
+  res.send('🍪 Cookies are set');
+});
+
+app.get('/get-cookie', (req, res) => {
+  console.log(req.cookies);
+  res.send(req.cookies);
+});
+
+app.get('/del-cookie', (req, res) => {
+  res.clearCookie('foo');
+  res.send('Cookie has been deleted');
+});
 
 app.post('/api/namespaces', async (req: Request, res: Response) => {
   const { name } = req.body;

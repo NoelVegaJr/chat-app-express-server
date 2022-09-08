@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  userId  Int @default(autoincrement()) @id
+  email String 
+  password String
+}
+
 model Namespace {
   namespaceId Int @default(autoincrement()) @id
   name String 
@@ -20,7 +26,7 @@ model Room {
   roomId Int @default(autoincrement()) @id
   namespace Namespace @relation(fields:[namespaceId], references: [namespaceId])
   namespaceId Int
-  name String 
+  name String
 }
 
 
