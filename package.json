@@ -6,6 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoelVegaJr/chat-app-express-server.git"
+  },
+  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NoelVegaJr/chat-app-express-server/issues"
+  },
+  "homepage": "https://github.com/NoelVegaJr/chat-app-express-server#readme",
+  "devDependencies": {
+    "@types/node": "^18.7.16",
+    "prisma": "^4.3.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.2"
+  }
 }
